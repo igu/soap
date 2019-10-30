@@ -3,7 +3,7 @@
 class server
 {
 
-    public $alunos;
+    private $alunos;
 
     public function __construct()
     {
@@ -40,13 +40,17 @@ class server
 
     public function getNomeEstudante($matricula)
     {
-        return $this->alunos[$matricula];
+        if( isset($this->alunos[$matricula]) == 1 ) return $this->alunos[$matricula];
+        else throw new SoapFault('Matricula não encontrada', 401);
     }
 
 }
 
-$params = array('uri' => 'localhost/soap/server.php');
+$params = array(
+    'uri' => 'localhost:8080/soap/server.php',
+);
+
 $server = new SoapServer(NULL, $params);
 $server->setClass('server');
 $server->handle();
-
+?>
