@@ -47,10 +47,9 @@ class server
 }
 
 $params = array(
-    'uri' => 'localhost:8080/soap/server.php',
+    'uri' => 'localhost:8080/server.php',
 );
 
 $server = new SoapServer(NULL, $params);
 $server->setClass('server');
 $server->handle();
-?>
